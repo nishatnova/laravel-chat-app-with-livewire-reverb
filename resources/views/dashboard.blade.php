@@ -55,7 +55,7 @@
         </div>
 </x-layouts.app>
 
-{{-- <script type="module">
+<script type="module">
     window.Echo.private('unread-channel.{{ Auth::user()->id }}')
         .listen('UnreadMessage', (event) => {
 
@@ -71,4 +71,4 @@
                 audio.play();
             }
         });
-</script> --}}
+</script>
