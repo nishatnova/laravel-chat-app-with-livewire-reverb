@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sender_id');
+            $table->foreignId('receiver_id');
+            $table->text('message')->nullable();
+            $table->string('file_name')->nullable();
+            $table->string('file_original_name')->nullable();
+            $table->string('folder_path')->nullable();
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }
