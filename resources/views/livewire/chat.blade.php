@@ -78,7 +78,7 @@
                                                 <h5 class="text-gray-900 text-sm font-normal leading-snug">{{$message->message}}</h5>
                                             </div>
                                             <div class="justify-end items-center inline-flex mb-2.5">
-                                                <h6 class="text-gray-500 text-xs font-normal leading-4 py-1">05:14 PM</h6>
+                                                <h6 class="text-gray-500 text-xs font-normal leading-4 py-1">{{$message->created_at->format('h:i A')}}</h6>
                                             </div>
                                         </div>
                                         
@@ -94,7 +94,7 @@
                                             <h2 class="text-white text-sm font-normal leading-snug">{{$message->message}}</h2>
                                         </div>
                                         <div class="justify-start items-center inline-flex">
-                                            <h3 class="text-gray-500 text-xs font-normal leading-4 py-1">05:14 PM</h3>
+                                            <h3 class="text-gray-500 text-xs font-normal leading-4 py-1">{{$message->created_at->format('h:i A')}}</h3>
                                         </div>
                                     </div>
                                     
