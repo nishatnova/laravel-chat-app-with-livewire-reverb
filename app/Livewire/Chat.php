@@ -28,7 +28,7 @@ class Chat extends Component
     }
 
     public function getMessages(){
-        Message::with('sender', 'receiver')
+        return Message::with('sender:id,name', 'receiver:id,name')
         ->where(function($query){
              $query->where('sender_id', $this->senderId)
             ->where('receiver_id', $this->receiverId);
@@ -37,9 +37,7 @@ class Chat extends Component
        ->orWhere(function($query){
         $query->where('sender_id', $this->receiverId)
         ->where('receiver_id', $this->senderId);
-       })
-        
-        ->get();
+       })->get();
     }
 
     public function getUsers($userId){
