@@ -8,6 +8,7 @@ use App\Models\User;
 class Chat extends Component
 {
     public $user;
+    public $message;
 
     public function mount($userId){
         $this->user = $this->getUsers($userId);
@@ -20,4 +21,6 @@ class Chat extends Component
     public function getUsers($userId){
        return User::find($userId);
     }
+
+    
 }
