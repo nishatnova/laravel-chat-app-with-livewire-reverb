@@ -10,7 +10,7 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     public function index(): View{
-        $users = User::where('id', '!=', Auth::user()->id)->get();
+        $users = User::where('id', '!=', Auth::user()->id)->withCount(['unReadMessages'])->get();
         return view('dashboard', compact('users'));
     }
 
