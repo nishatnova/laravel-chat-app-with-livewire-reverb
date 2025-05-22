@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Events\MessageSentEvent;
 use App\Models\Message;
 use Livewire\Component;
 use App\Models\User;
+use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Auth;
 
 class Chat extends Component
@@ -16,6 +18,7 @@ class Chat extends Component
     public $messages;                 
 
     public function mount($userId){
+        $this->dispatch('messages-updated');
         $this->user = $this->getUsers($userId);
         $this->senderId = Auth::user()->id;
         $this->receiverId = $userId;
@@ -45,9 +48,24 @@ class Chat extends Component
     }
 
     public function sendMessage(){
-        $this->saveMessage();
+        $sentMessage = $this->saveMessage();
 
+        $this->messages[] = $sentMessage;
+
+        broadcast(new MessageSentEvent($sentMessage));
         $this->message = null;
+
+        $this->dispatch('messages-updated');
+    }
+
+    
+    #[On('echo-private:chat-channel.{senderId},MessageSentEvent')]
+    public function listenMessage($event)
+    {
+        # Convert the event message array into an Eloquent model with relationships
+        $newMessage = Message::find($event['message']['id'])->load('sender:id,name', 'receiver:id,name');
+
+        $this->messages[] = $newMessage;
     }
 
     public function saveMessage(){

@@ -65,6 +65,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div id="chat-container"
                 class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-15 overflow-y-auto h-[calc(100vh-12rem)] scroll-smooth">
+                
                 <div class="w-full px-8 py-5 grow">
                     @foreach ($messages as $message)
                         @if ($message->sender->id !== auth()->user()->id)
@@ -149,7 +150,7 @@
     </div>
 </div>
 
-{{-- @script
+@script
     <script type="module">
         let typingTimeout;
         const chatContainer = document.getElementById('chat-container');
@@ -209,4 +210,4 @@
             }
         }
     </script>
-@endscript --}}
+@endscript
