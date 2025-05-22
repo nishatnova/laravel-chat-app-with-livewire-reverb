@@ -118,7 +118,7 @@
                                     </g>
                                 </svg>
 
-                                <input wire:model="message" class="grow shrink basis-0 text-black text-xs font-medium leading-4 focus:outline-none" placeholder="Type here...">
+                                <input wire:keydown="userTyping" wire:model="message" class="grow shrink basis-0 text-black text-xs font-medium leading-4 focus:outline-none" placeholder="Type here...">
                             
                             </div>
                             <div class="flex items-center gap-2">
